@@ -1,0 +1,37 @@
+- hosts: backend
+  tasks:
+  - name: Installing WebServer And PHP 
+    package:
+          name: httpd ,php
+          state: present
+  - name: copying Webpages to webserver
+    template:
+          src: /root/loadbalancer-haprocy/index.php
+          dest: /var/www/html/index.php
+    register: x
+  - name: starting https service
+    service:
+          name: httpd
+          state: started
+   
+
+- hosts: frontend
+  tasks:
+  - name: Installing Haproxy-Loadbalancer 
+    package:
+          name: haproxy
+          state: present
+  - name: Uploading Configuration file 
+    template:
+          src: /root/loadbalancer-haprocy/haproxy.cfg
+          dest: /etc/haproxy/haproxy.cfg
+    register: x
+  - name: starting haproxy 
+    service:
+          name: haproxy
+          state: started
+  - name: Restarting Service if some changes in configuration file
+    service:
+          name: haproxy
+          state: restarted
+    when: x.changed

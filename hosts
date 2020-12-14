@@ -1,0 +1,10 @@
+[backend]
+52.66.147.29 ansible_user=ec2-user ansible_ssh_private_key_file=/root/csa-key.pem ansible_connection=ssh
+13.232.75.51 ansible_user=ec2-user ansible_ssh_private_key_file=/root/csa-key.pem ansible_connection=ssh
+13.234.204.162 ansible_user=ec2-user ansible_ssh_private_key_file=/root/csa-key.pem ansible_connection=ssh
+65.0.135.84 ansible_user=ec2-user ansible_ssh_private_key_file=/root/csa-key.pem ansible_connection=ssh
+
+
+
+[frontend]
+13.233.167.205 ansible_user=ec2-user ansible_ssh_private_key_file=/root/csa-key.pem ansible_connection=ssh
